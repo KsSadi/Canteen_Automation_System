@@ -66,7 +66,7 @@
 
                 <li class=" nav-item  @if (Request::is('dashboard/roless*'))
                     nav-item active
-                   @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Datatable">Category</span></a>
+                   @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='grid'></i><span class="menu-title text-truncate" data-i18n="Datatable">Category</span></a>
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Category</span></a>
                         </li>
@@ -122,7 +122,7 @@
 
                 <li class=" nav-item  @if (Request::is('dashboard/roless*'))
                     nav-item active
-                   @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Datatable">Category</span></a>
+                   @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='grid'></i><span class="menu-title text-truncate" data-i18n="Datatable">Category</span></a>
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Category</span></a>
                         </li>
@@ -146,7 +146,7 @@
                     nav-item active
                 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='bar-chart-2'></i><span class="menu-title text-truncate" data-i18n="Datatable">Current Stock</span></a>
                     <ul class="menu-content">
-                         <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">View Stock Purchase</span></a>
+                         <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">View Stock</span></a>
                             </li>
 
                     </ul>

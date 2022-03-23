@@ -9,7 +9,7 @@
 @include('backend.layouts.partials.alerts')
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Edit Role </h4>
+        <h4 class="card-title">Create Admin </h4>
 
     </div>
     <p><hr/></p>

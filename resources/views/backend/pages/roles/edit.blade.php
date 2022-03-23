@@ -16,7 +16,7 @@
 
         <div class="card-body">
 
-            <div action="{{ route('dashboard.roles.update', $role->id) }}" method="POST">
+            <form action="{{ route('dashboard.roles.update', $role->id) }}" method="POST">
                 @method('PUT')
                 @csrf
 
@@ -48,7 +48,7 @@
                 <div class="sm:ml-20 sm:pl-5 mt-5">
                     <input type="submit" class="btn btn-gradient-primary" value="Update" />
                 </div>
-        </div>
+        </form>
 
         </form>
     </div>

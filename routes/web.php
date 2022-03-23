@@ -27,6 +27,8 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('roles', 'App\Http\Controllers\RolesController', ['names' => 'dashboard.roles']);
     Route::resource('users', 'App\Http\Controllers\UsersController', ['names' => 'dashboard.users']);
     Route::resource('admins', 'App\Http\Controllers\AdminsController', ['names' => 'dashboard.admins']);
+    Route::resource('employees', 'App\Http\Controllers\CAS\EmployeesController', ['names' => 'dashboard.employees']);
+
 
     Route::get('/login', 'App\Http\Controllers\AdminAuth\AuthenticatedSessionController@showLoginForm')->name('dashboard.login');
     Route::post('/login/submit', 'App\Http\Controllers\AdminAuth\AuthenticatedSessionController@login')->name('dashboard.login.submit');

@@ -33,6 +33,9 @@ class RolePermissionSeeder extends Seeder
             'admin.edit',
             'admin.delete',
             'admin.approve',
+            'employee.view',
+            'employee.create',
+            'employee.salary',
 
             //permissions names for role
             'role.create',
@@ -40,6 +43,33 @@ class RolePermissionSeeder extends Seeder
             'role.edit',
             'role.delete',
             'role.approve',
+
+            //permissions names for Salebale Products
+            'sale.view',
+            'sale.create',
+            'sale.item.view',
+            'sale.item.create',
+            'sale.category.view',
+            'sale.category.create',
+
+
+            //permissions names for Purchase Products
+            'purchase.view',
+            'purchase.create',
+            'purchase.item.view',
+            'purchase.item.create',
+            'purchase.category.view',
+            'purchase.category.create',
+
+            //permissions names for Stock
+            'stock.view',
+            'stockout.view',
+            'stockout.create',
+
+            //permissions names for Stock
+            'report.view',
+
+
         ];
 
         //Create and Assign Premission for admin

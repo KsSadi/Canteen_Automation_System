@@ -49,6 +49,10 @@ class RolePermissionSeeder extends Seeder
             'sale.create',
             'sale.item.view',
             'sale.item.create',
+            'sale.item.delete',
+            'sale.unit.view',
+            'sale.unit.create',
+            'sale.unit.delete',
             'sale.category.view',
             'sale.category.create',
 
@@ -58,6 +62,10 @@ class RolePermissionSeeder extends Seeder
             'purchase.create',
             'purchase.item.view',
             'purchase.item.create',
+            'purchase.item.delete',
+            'purchase.unit.view',
+            'purchase.unit.create',
+            'purchase.unit.delete',
             'purchase.category.view',
             'purchase.category.create',
 

@@ -7,7 +7,7 @@
 
 @section('admin-section')
     @include('backend.layouts.partials.alerts')
-    <a href="{{ route('dashboard.employees.create') }}" style="max-width: 220px" class="btn btn-gradient-primary"> <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Admin </a>
+    <a href="{{ route('dashboard.employees.create') }}" style="max-width: 220px" class="btn btn-gradient-primary"> <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Employee </a>
     <div style="padding-bottom: 15px;"></div>
     <div class="card" style="padding-top: 10px;">
 
@@ -16,8 +16,10 @@
             <tr>
                 <th class="whitespace-no-wrap" width="10%"></th>
                 <th class="whitespace-no-wrap">NAME</th>
-                <th class="text-center whitespace-no-wrap">ROLES</th>
-                <th></th>
+                <th class="text-center whitespace-no-wrap">Mobile</th>
+                <th>Join Date</th>
+                <th>Salary</th>
+               
                 <th class="text-center whitespace-no-wrap">ACTIONS</th>
             </tr>
             </thead>
@@ -36,12 +38,21 @@
                     <td>
                         <span href="" class="font-medium whitespace-no-wrap">{{ $employee->name }}</span>
                         <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>
-                        </t mnd>
-                    <td class="text-center">
+                        </td>
 
+                    <td style="text-align: center">
+                        <span href="" class="font-medium whitespace-no-wrap">{{ $employee->mobile }}</span>
 
                     </td>
-                    <td></td>
+                    <td>
+                        <span href="" class="font-medium whitespace-no-wrap">{{ $employee->join_date }}</span>
+
+                    </td>
+                    <td>
+                        <span href="" class="font-medium whitespace-no-wrap">{{ $employee->salary }}</span>
+
+                    </td>
+
                     <td style="text-align: center">
                         <div class="flex justify-center items-center" >
                             <a class="flex items-center mr-3" href="{{ route('dashboard.employees.edit', $employee->id) }}">

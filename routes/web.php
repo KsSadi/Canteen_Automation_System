@@ -28,6 +28,12 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('users', 'App\Http\Controllers\UsersController', ['names' => 'dashboard.users']);
     Route::resource('admins', 'App\Http\Controllers\AdminsController', ['names' => 'dashboard.admins']);
     Route::resource('employees', 'App\Http\Controllers\CAS\EmployeesController', ['names' => 'dashboard.employees']);
+    Route::resource('scategorys', 'App\Http\Controllers\Admin\sCategoryController', ['names' => 'dashboard.sale.category']);
+    Route::resource('pcategorys', 'App\Http\Controllers\Admin\sCategoryController', ['names' => 'dashboard.purchase.category']);
+    Route::resource('pitems', 'App\Http\Controllers\Admin\PurchaseItemController', ['names' => 'dashboard.purchase.item']);
+    Route::resource('punits', 'App\Http\Controllers\Admin\PurchaseUnitController', ['names' => 'dashboard.purchase.unit']);
+    Route::resource('saleitem', 'App\Http\Controllers\Admin\SaleItemController', ['names' => 'dashboard.sale.item']);
+    Route::resource('saleunit', 'App\Http\Controllers\Admin\SaleUnitController', ['names' => 'dashboard.sale.unit']);
 
 
     Route::get('/login', 'App\Http\Controllers\AdminAuth\AuthenticatedSessionController@showLoginForm')->name('dashboard.login');

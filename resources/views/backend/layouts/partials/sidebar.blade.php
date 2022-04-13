@@ -31,7 +31,7 @@
                     <div class="divider-text">Saleable Products</div>
                 </div>
 
-                <li class=" nav-item  @if (Request::is('dashboard/sale*'))
+                <li class=" nav-item  @if (Request::is('dashboard/saleproducts*'))
                     nav-item active
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="Datatable">Sell Products</span></a>
                     <ul class="menu-content">
@@ -48,14 +48,30 @@
             @if (Auth::guard('admin')->user()->can('sale.item.view'))
 
 
-                <li class=" nav-item  @if (Request::is('dashboard/sale*'))
+                <li class=" nav-item  @if (Request::is('dashboard/saleitem*'))
                     nav-item active
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='tag'></i><span class="menu-title text-truncate" data-i18n="Datatable">Item</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Item</span></a>
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.sale.item.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Item</span></a>
                         </li>
                         @if (Auth::guard('admin')->user()->can('sale.item.create'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Item</span></a>
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.sale.item.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Item</span></a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+            @if (Auth::guard('admin')->user()->can('sale.unit.view'))
+
+
+                <li class=" nav-item  @if (Request::is('dashboard/saleunit*'))
+                    nav-item active
+@endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='server'></i><span class="menu-title text-truncate" data-i18n="Datatable">Unit</span></a>
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.sale.unit.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Unit</span></a>
+                        </li>
+                        @if (Auth::guard('admin')->user()->can('sale.unit.create'))
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.sale.unit.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Unit</span></a>
                             </li>
                         @endif
                     </ul>
@@ -65,14 +81,14 @@
             @if (Auth::guard('admin')->user()->can('sale.category.view'))
 
 
-                <li class=" nav-item  @if (Request::is('dashboard/sale*'))
+                <li class=" nav-item  @if (Request::is('dashboard/scategorys*'))
                     nav-item active
                    @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='grid'></i><span class="menu-title text-truncate" data-i18n="Datatable">Category</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Category</span></a>
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.sale.category.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Category</span></a>
                         </li>
                         @if (Auth::guard('admin')->user()->can('sale.category.create'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Category</span></a>
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.sale.category.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Category</span></a>
                             </li>
                         @endif
                     </ul>
@@ -109,27 +125,42 @@
                     nav-item active
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='tag'></i><span class="menu-title text-truncate" data-i18n="Datatable">Item</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Item</span></a>
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.purchase.item.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Item</span></a>
                         </li>
                         @if (Auth::guard('admin')->user()->can('purchase.item.create'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Item</span></a>
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.purchase.item.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Item</span></a>
                             </li>
                         @endif
                     </ul>
                 </li>
             @endif
+            @if (Auth::guard('admin')->user()->can('purchase.unit.view'))
 
+
+                <li class=" nav-item  @if (Request::is('dashboard/punit*'))
+                    nav-item active
+@endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='server'></i><span class="menu-title text-truncate" data-i18n="Datatable">Unit</span></a>
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.purchase.unit.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Unit</span></a>
+                        </li>
+                        @if (Auth::guard('admin')->user()->can('purchase.unit.create'))
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.purchase.unit.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Unit</span></a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
             @if (Auth::guard('admin')->user()->can('purchase.category.view'))
 
 
-                <li class=" nav-item  @if (Request::is('dashboard/purchase*'))
+                <li class=" nav-item  @if (Request::is('dashboard/pcategory*'))
                     nav-item active
                    @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='grid'></i><span class="menu-title text-truncate" data-i18n="Datatable">Category</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Category</span></a>
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.purchase.category.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Category</span></a>
                         </li>
                         @if (Auth::guard('admin')->user()->can('purchase.category.create'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Category</span></a>
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.purchase.category.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Category</span></a>
                             </li>
                         @endif
                     </ul>
@@ -193,10 +224,10 @@
                             <li><a class="d-flex align-items-center " href="{{ route('dashboard.employees.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Employee</span></a>
                             </li>
                         @endif
-                        @if (Auth::guard('admin')->user()->can('employee.salary'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard') }}"><i data-feather='dollar-sign'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary</span></a>
-                            </li>
-                        @endif
+{{--                        @if (Auth::guard('admin')->user()->can('employee.salary'))--}}
+{{--                            <li><a class="d-flex align-items-center " href="{{ route('dashboard') }}"><i data-feather='dollar-sign'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary</span></a>--}}
+{{--                            </li>--}}
+{{--                        @endif--}}
                     </ul>
                 </li>
 

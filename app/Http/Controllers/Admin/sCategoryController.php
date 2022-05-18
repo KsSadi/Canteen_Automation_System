@@ -92,7 +92,13 @@ class sCategoryController extends Controller
      */
     public function edit($id)
     {
+        //Check and guard the permission
+        if (is_null($this->user) || !$this->user->can('sale.category.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
         //
+        $scategory=sCategory::find($id);
+        return view('backend.pages.saleable.category.edit', compact('scategory'));
     }
 
     /**
@@ -104,7 +110,25 @@ class sCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (is_null($this->user) || !$this->user->can('sale.category.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
         //
+        $scategory=sCategory::find($id);
+        $request->validate([
+            'name' =>  'required|max:50',
+
+        ]);
+
+        $scategory->name = $request->name;
+        $scategory->save();
+
+        if ($scategory->save()) {
+            session()->flash('success', 'Category has been Updated!!');
+        }else{
+            session()->flash('failed', 'Failed Updating Category!!');
+        }
+        return back();
     }
 
     /**
@@ -116,5 +140,18 @@ class sCategoryController extends Controller
     public function destroy($id)
     {
         //
+        //Check and guard the permission
+        if (is_null($this->user) || !$this->user->can('sale.category.delete')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $scategory =sCategory::find($id);
+        if(!is_null($scategory)){
+            $scategory->delete();
+            session()->flash('success', 'Item has been Deleted!!');
+        }else {
+            session()->flash('failed', 'Item could not be deleted!!');
+        }
+        return back();
+
     }
 }

@@ -88,7 +88,14 @@ class PurchaseItemController extends Controller
      */
     public function show($id)
     {
-        //
+        //Check and guard the permission
+        if (is_null($this->user) || !$this->user->can('purchase.item.view')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $pitem = PurchaseItem::findOrFail($id);
+
+        return view('backend.pages.purchase.item.show', ['pitem' => $pitem]);
+//        return view('backend.pages.saleable.item.index',compact('sitems'));
     }
 
     /**
@@ -99,7 +106,14 @@ class PurchaseItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (is_null($this->user) || !$this->user->can('purchase.item.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+
+        $pitem = PurchaseItem::find($id);
+        $pcategories = pCategory::all();
+        return view('backend.pages.purchase.item.edit',compact('pitem','pcategories'));
+
     }
 
     /**
@@ -111,7 +125,23 @@ class PurchaseItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (is_null($this->user) || !$this->user->can('purchase.item.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+
+        $pitem = PurchaseItem::find($id);
+        $pitem->name = $request->name;
+        $pitem->description = $request->description;
+        $pitem->price = $request->price;
+        $pitem->save();
+
+        if($pitem->save()) {
+            session()->flash('success', 'Item has been Updated!!');
+        }else{
+            session()->flash('failed', 'Failed Updating Item !!');
+        }
+        return back();
+
     }
 
     /**
@@ -122,6 +152,18 @@ class PurchaseItemController extends Controller
      */
     public function destroy($id)
     {
+        if (is_null($this->user) || !$this->user->can('purchase.item.delete')) {
+            abort(403, 'Unauthorized Access!');
+        }
         //
+        $pitem = PurchaseItem::find($id);
+        if(!is_null($pitem)){
+            $pitem->delete();
+            session()->flash('success', 'Item has been Deleted!!');
+            return back();
+        }else {
+            session()->flash('failed', 'Item could not be deleted!!');
+        }
+        return back();
     }
 }

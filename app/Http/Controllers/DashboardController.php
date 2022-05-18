@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +30,12 @@ class DashboardController extends Controller
             $statData = [];
 
             //return $courses;
-            return view('backend.pages.dashboard.index', compact('statData'));
+            $to = Carbon::now();
+            $from = Carbon::now()->subDays(30)->toDateString();
+            $saleitem = Sale::whereBetween('created_at', [$from, $to])->get()->count();
+
+
+            return view('backend.pages.dashboard.index', compact('statData','saleitem'));
         }
         //return view('backend.pages.dashboard.index');
     }

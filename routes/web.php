@@ -28,12 +28,28 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('users', 'App\Http\Controllers\UsersController', ['names' => 'dashboard.users']);
     Route::resource('admins', 'App\Http\Controllers\AdminsController', ['names' => 'dashboard.admins']);
     Route::resource('employees', 'App\Http\Controllers\CAS\EmployeesController', ['names' => 'dashboard.employees']);
+    Route::resource('employees-salary', 'App\Http\Controllers\Admin\SalaryController', ['names' => 'dashboard.employees.salary']);
     Route::resource('scategorys', 'App\Http\Controllers\Admin\sCategoryController', ['names' => 'dashboard.sale.category']);
-    Route::resource('pcategorys', 'App\Http\Controllers\Admin\sCategoryController', ['names' => 'dashboard.purchase.category']);
+    Route::resource('pcategorys', 'App\Http\Controllers\Admin\pCategoryController', ['names' => 'dashboard.purchase.category']);
     Route::resource('pitems', 'App\Http\Controllers\Admin\PurchaseItemController', ['names' => 'dashboard.purchase.item']);
     Route::resource('punits', 'App\Http\Controllers\Admin\PurchaseUnitController', ['names' => 'dashboard.purchase.unit']);
     Route::resource('saleitem', 'App\Http\Controllers\Admin\SaleItemController', ['names' => 'dashboard.sale.item']);
     Route::resource('saleunit', 'App\Http\Controllers\Admin\SaleUnitController', ['names' => 'dashboard.sale.unit']);
+    Route::resource('sales', 'App\Http\Controllers\Admin\SaleController', ['names' => 'dashboard.sales']);
+    Route::resource('purchases', 'App\Http\Controllers\Admin\PurchaseController', ['names' => 'dashboard.purchases']);
+
+    Route::post('category-product',[\App\Http\Controllers\Admin\SaleController::class,'findProduct'])->name('getcategory');
+    Route::post('pcategory-product',[\App\Http\Controllers\Admin\PurchaseController::class,'findProduct'])->name('getpcategory');
+    Route::post('product-list',[\App\Http\Controllers\Admin\SaleController::class,'findProductList'])->name('getproduct');
+    Route::post('pproduct-list',[\App\Http\Controllers\Admin\PurchaseController::class,'findProductList'])->name('getpproduct');
+    Route::post('salary-list',[\App\Http\Controllers\Admin\SalaryController::class,'findSalary'])->name('getsalary');
+    Route::get('/employee-status/{id}',[\App\Http\Controllers\CAS\EmployeesController::class,'employeeStatus']);
+    Route::get('user-profile',[\App\Http\Controllers\Admin\ProfileController::class,'index'])->name('user.profile');
+
+//    Route::post('/reports/sale/date', 'App\Http\Controllers\Admin\SaleReportController@DateRange')->name('dashboard.reports.sale-date');
+
+    Route::post('/reports/purchase', 'App\Http\Controllers\Admin\PurchaseReportController@DateRange')->name('dashboard.reports.purchase');
+    Route::post('/reports/salary', 'App\Http\Controllers\Admin\SalaryReportController@DateRange')->name('dashboard.reports.salary');
 
 
     Route::get('/login', 'App\Http\Controllers\AdminAuth\AuthenticatedSessionController@showLoginForm')->name('dashboard.login');

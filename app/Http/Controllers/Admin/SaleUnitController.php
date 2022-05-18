@@ -91,6 +91,14 @@ class SaleUnitController extends Controller
     public function edit($id)
     {
         //
+        //
+        if (is_null($this->user) || !$this->user->can('sale.unit.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+
+        $sunit = SaleUnit::find($id);
+        return view('backend.pages.saleable.unit.edit',compact('sunit'));
+
     }
 
     /**
@@ -103,6 +111,26 @@ class SaleUnitController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (is_null($this->user) || !$this->user->can('sale.unit.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+
+        $sunit = SaleUnit::find($id);
+        $request->validate([
+            'name' =>  'required|max:50',
+
+        ]);
+        $sunit->name = $request->name;
+        $sunit->save();
+
+
+        if($sunit->save()) {
+            session()->flash('success', 'Unit has been Updated!!');
+        }else{
+            session()->flash('failed', 'Failed Updating Unit!!');
+        }
+        return back();
+
     }
 
     /**

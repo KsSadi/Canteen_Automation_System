@@ -30,7 +30,7 @@ class pCategoryController extends Controller
         }
         //
         $pcategory= pCategory::all();
-        return view('backend.pages.purchase.category.index',compact('pcategory');
+        return view('backend.pages.purchase.category.index',compact('pcategory'));
     }
 
     /**
@@ -45,8 +45,8 @@ class pCategoryController extends Controller
             abort(403, 'Unauthorized Access!');
         }
         //
-        $pcategory= pCategory::all();
-        return view('backend.pages.purchase.category.create',compact('pcategory');
+        $pcategorys= pCategory::all();
+        return view('backend.pages.purchase.category.create',compact('pcategorys'));
     }
 
     /**
@@ -94,7 +94,13 @@ class pCategoryController extends Controller
      */
     public function edit($id)
     {
+        //Check and guard the permission
+        if (is_null($this->user) || !$this->user->can('purchase.category.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
         //
+        $pcategory = pCategory::find($id);
+        return view('backend.pages.purchase.category.edit', compact('pcategory'));
     }
 
     /**
@@ -106,7 +112,27 @@ class pCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Check and guard the permission
+        if (is_null($this->user) || !$this->user->can('purchase.category.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
         //
+        $pcategory = pCategory::find($id);
+        $request->validate([
+            'name' =>  'required|max:50',
+
+        ]);
+
+        $pcategory->name = $request->name;
+        $pcategory->save();
+
+        if ($pcategory->save()) {
+            session()->flash('success', 'Category has been Updated!!');
+        }else{
+            session()->flash('failed', 'Failed Updating Category!!');
+        }
+        return back();
+
     }
 
     /**
@@ -118,5 +144,17 @@ class pCategoryController extends Controller
     public function destroy($id)
     {
         //
+        //Check and guard the permission
+        if (is_null($this->user) || !$this->user->can('purchase.category.delete')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $pcategory = pCategory::find($id);
+        if(!is_null($pcategory)){
+            $pcategory->delete();
+            session()->flash('success', 'Category has been Deleted!!');
+        }else {
+            session()->flash('failed', 'Category could not be deleted!!');
+        }
+        return back();
     }
 }

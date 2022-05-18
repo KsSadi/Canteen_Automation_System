@@ -33,6 +33,7 @@ class SaleItemController extends Controller
             abort(403, 'Unauthorized Access!');
         }
         $sitems = SaleItem::all();
+       // return $sitems->unit->name;
         return view('backend.pages.saleable.item.index',compact('sitems'));
     }
 
@@ -48,9 +49,9 @@ class SaleItemController extends Controller
             abort(403, 'Unauthorized Access!');
         }
 
-        $scategorys = sCategory::all();
+        $scategories = sCategory::all();
         $sunits = SaleUnit::all();
-        return view('backend.pages.saleable.item.create',compact('scategorys','sunits'));
+        return view('backend.pages.saleable.item.create',compact('scategories','sunits'));
     }
 
     /**
@@ -95,7 +96,14 @@ class SaleItemController extends Controller
      */
     public function show($id)
     {
-        //
+        //Check and guard the permission
+        if (is_null($this->user) || !$this->user->can('sale.item.view')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $sitem = SaleItem::findOrFail($id);
+
+        return view('backend.pages.saleable.item.show', ['sitems' => $sitem]);
+//        return view('backend.pages.saleable.item.index',compact('sitems'));
     }
 
     /**
@@ -106,7 +114,12 @@ class SaleItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        if (is_null($this->user) || !$this->user->can('sale.item.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $sitem = SaleItem::find($id);
+        $scategories = sCategory::all();
+        return view('backend.pages.saleable.item.edit',compact('sitem','scategories'));
     }
 
     /**
@@ -119,6 +132,21 @@ class SaleItemController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (is_null($this->user) || !$this->user->can('sale.item.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $sitem = SaleItem::find($id);
+        $sitem->name = $request->name;
+        $sitem->description = $request->description;
+        $sitem->price = $request->price;
+        $sitem->save();
+
+        if($sitem->save()) {
+            session()->flash('success', 'Item has been Updated!!');
+        }else{
+            session()->flash('failed', 'Failed Updating Item !!');
+        }
+        return back();
     }
 
     /**

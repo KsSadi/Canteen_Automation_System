@@ -21,7 +21,7 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Products Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Products Name" name="name">
+                            <input type="text" class="form-control" placeholder="Products Name" name="name" required>
                         </div>
                     </div>
                     <div class="mb-1 row">
@@ -34,10 +34,12 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Category</label>
                         <div class="col-sm-10">
-                            <select class="select2 form-select" id="select2-basic" name="scat_id">
+                            <select class="select2 form-select" id="select2-basic" name="pcat_id" required>
+                                <option value="">Select</option>
                                 @foreach($pcats as $pcat)
 
-                                        <option value="{{ $pcat->name }}"> {{ $pcat->name }}</option>
+
+                                        <option value="{{ $pcat->id }}"> {{ $pcat->name }}</option>
 
                                 @endforeach
                             </select>
@@ -48,10 +50,11 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Unit</label>
                         <div class="col-sm-10">
-                            <select class="select2 form-select" id="select2-basic" name="sunit_id">
+                            <select class="select2 form-select" id="select2-basic" name="punit_id" required>
+                                <option value="">Select</option>
                                 @foreach($punits as $punit)
 
-                                    <option value="{{ $punit->name }}"> {{ $punit->name }}</option>
+                                    <option value="{{ $punit->id }}"> {{ $punit->name }}</option>
 
                                 @endforeach
                             </select>
@@ -60,7 +63,7 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Price </label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" placeholder="100" name="price">
+                            <input type="number" class="form-control" placeholder="100" name="price" required>
                         </div>
                     </div>
 {{--                    <div class="mb-1 row">--}}

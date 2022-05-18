@@ -23,7 +23,7 @@
 
             </li>
 
-{{--Start saleable Products--}}
+            {{--Start saleable Products--}}
 
 
             @if (Auth::guard('admin')->user()->can('sale.view'))
@@ -31,15 +31,15 @@
                     <div class="divider-text">Saleable Products</div>
                 </div>
 
-                <li class=" nav-item  @if (Request::is('dashboard/saleproducts*'))
+                <li class=" nav-item  @if (Request::is('dashboard/sales**'))
                     nav-item active
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="Datatable">Sell Products</span></a>
                     <ul class="menu-content">
 
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Manage Sales</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.sales.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Manage Sales</span></a>
                         </li>
                         @if (Auth::guard('admin')->user()->can('sale.create'))
-                            <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='edit'></i><span class="menu-item text-truncate" data-i18n="Basic">New Sale</span></a>
+                            <li><a class="d-flex align-items-center" href="{{ route('dashboard.sales.create') }}"><i data-feather='edit'></i><span class="menu-item text-truncate" data-i18n="Basic">New Sale</span></a>
                             </li>
                         @endif
                     </ul>
@@ -94,7 +94,7 @@
                     </ul>
                 </li>
             @endif
-{{--End Saleable Product--}}
+            {{--End Saleable Product--}}
 
             {{--Start Purchase Products--}}
 
@@ -104,15 +104,15 @@
                     <div class="divider-text">Purchase Products</div>
                 </div>
 
-                <li class=" nav-item  @if (Request::is('dashboard/purchase*'))
+                <li class=" nav-item  @if (Request::is('dashboard/purchases*'))
                     nav-item active
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='shopping-bag'></i><span class="menu-title text-truncate" data-i18n="Datatable">Purchase Products</span></a>
                     <ul class="menu-content">
 
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Manage Purchase</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.purchases.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Manage Purchase</span></a>
                         </li>
                         @if (Auth::guard('admin')->user()->can('purchase.create'))
-                            <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='edit'></i><span class="menu-item text-truncate" data-i18n="Basic">New Purchase</span></a>
+                            <li><a class="d-flex align-items-center" href="{{ route('dashboard.purchases.create') }}"><i data-feather='edit'></i><span class="menu-item text-truncate" data-i18n="Basic">New Purchase</span></a>
                             </li>
                         @endif
                     </ul>
@@ -121,7 +121,7 @@
             @if (Auth::guard('admin')->user()->can('purchase.item.view'))
 
 
-                <li class=" nav-item  @if (Request::is('dashboard/purchase*'))
+                <li class=" nav-item  @if (Request::is('dashboard/pitems*'))
                     nav-item active
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='tag'></i><span class="menu-title text-truncate" data-i18n="Datatable">Item</span></a>
                     <ul class="menu-content">
@@ -180,8 +180,8 @@
                     nav-item active
                 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='bar-chart-2'></i><span class="menu-title text-truncate" data-i18n="Datatable">Current Stock</span></a>
                     <ul class="menu-content">
-                         <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">View Stock</span></a>
-                            </li>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">View Stock</span></a>
+                        </li>
 
                     </ul>
                 </li>
@@ -224,49 +224,49 @@
                             <li><a class="d-flex align-items-center " href="{{ route('dashboard.employees.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Employee</span></a>
                             </li>
                         @endif
-{{--                        @if (Auth::guard('admin')->user()->can('employee.salary'))--}}
-{{--                            <li><a class="d-flex align-items-center " href="{{ route('dashboard') }}"><i data-feather='dollar-sign'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary</span></a>--}}
-{{--                            </li>--}}
-{{--                        @endif--}}
+                        @if (Auth::guard('admin')->user()->can('employee.salary'))
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.employees.salary.index') }}"><i data-feather='dollar-sign'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary</span></a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
 
 
-            @if (Auth::guard('admin')->user()->can('role.view'))
+                @if (Auth::guard('admin')->user()->can('role.view'))
 
 
-                <li class=" nav-item  @if (Request::is('dashboard/roles*'))
-                    nav-item active
+                    <li class=" nav-item  @if (Request::is('dashboard/roles*'))
+                        nav-item active
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='cpu'></i><span class="menu-title text-truncate" data-i18n="Datatable">Roles</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Roles</span></a>
-                        </li>
-                        @if (Auth::guard('admin')->user()->can('role.create'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Roles</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Roles</span></a>
                             </li>
-                        @endif
-                    </ul>
-                </li>
-            @endif
+                            @if (Auth::guard('admin')->user()->can('role.create'))
+                                <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Roles</span></a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
 
-            @if (Auth::guard('admin')->user()->can('admin.view'))
+                @if (Auth::guard('admin')->user()->can('admin.view'))
 
-                <li class=" nav-item  @if (Request::is('dashboard/admins*'))
-                    nav-item active @endif">
-                    <a class="d-flex align-items-center" href="javascript:;"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="Datatable">Admins</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/admins"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">Admins List</span></a>
-                        </li>
-                        @if (Auth::guard('admin')->user()->can('admin.create'))
-
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.admins.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Admin</span></a>
+                    <li class=" nav-item  @if (Request::is('dashboard/admins*'))
+                        nav-item active @endif">
+                        <a class="d-flex align-items-center" href="javascript:;"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="Datatable">Admins</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/admins"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">Admins List</span></a>
                             </li>
-                        @endif
-                    </ul>
-                </li>
+                            @if (Auth::guard('admin')->user()->can('admin.create'))
+
+                                <li><a class="d-flex align-items-center " href="{{ route('dashboard.admins.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Admin</span></a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
             @endif
-            @endif
-{{-- Start Report PArt--}}
+            {{-- Start Report PArt--}}
 
 
 
@@ -278,22 +278,27 @@
                     <div class="divider-text"> Reports</div>
                 </div>
 
-                <li class=" nav-item  @if (Request::is('dashboard/report*'))
+                <li class=" nav-item
+                @if (Request::is('dashboard/reports*'))
                     nav-item active
-@endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Datatable">Report</span></a>
+                @endif">
+                    <a class="d-flex align-items-center" href="javascript:;"><i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Datatable">Report</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Report</span></a>
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.reports.purchase') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">Selling Report</span></a>
                         </li>
-                        @if (Auth::guard('admin')->user()->can('report.demo'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Sub Category</span></a>
-                            </li>
-                        @endif
+
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.purchase') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Purchases Report</span></a>
+                        </li>
+
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.salary') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary Report</span></a>
+                        </li>
+
                     </ul>
                 </li>
             @endif
 
 
-{{--End Report Part--}}
+            {{--End Report Part--}}
 
         </ul>
     </div>

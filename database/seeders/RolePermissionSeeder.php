@@ -33,10 +33,15 @@ class RolePermissionSeeder extends Seeder
             'admin.edit',
             'admin.delete',
             'admin.approve',
-            'employee.view',
-            'employee.create',
-            'employee.salary',
 
+            //permissions names for employee
+            'employee.view',
+            'employee.edit',
+            'employee.create',
+            'employee.delete',
+            'employee.salary',
+            'salary.delete',
+            'salary.edit',
             //permissions names for role
             'role.create',
             'role.view',
@@ -46,28 +51,40 @@ class RolePermissionSeeder extends Seeder
 
             //permissions names for Salebale Products
             'sale.view',
+            'sale.edit',
             'sale.create',
+            'sale.delete',
             'sale.item.view',
+            'sale.item.edit',
             'sale.item.create',
             'sale.item.delete',
             'sale.unit.view',
+            'sale.unit.edit',
             'sale.unit.create',
             'sale.unit.delete',
             'sale.category.view',
+            'sale.category.edit',
             'sale.category.create',
+            'sale.category.delete',
 
 
             //permissions names for Purchase Products
             'purchase.view',
+            'purchase.edit',
             'purchase.create',
+            'purchase.delete',
             'purchase.item.view',
+            'purchase.item.edit',
             'purchase.item.create',
             'purchase.item.delete',
             'purchase.unit.view',
+            'purchase.unit.edit',
             'purchase.unit.create',
             'purchase.unit.delete',
             'purchase.category.view',
+            'purchase.category.edit',
             'purchase.category.create',
+            'purchase.category.delete',
 
             //permissions names for Stock
             'stock.view',

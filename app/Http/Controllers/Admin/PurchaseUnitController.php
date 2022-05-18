@@ -90,6 +90,12 @@ class PurchaseUnitController extends Controller
     public function edit($id)
     {
         //
+        if (is_null($this->user) || !$this->user->can('purchase.unit.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $punit= PurchaseUnit::find($id);
+
+        return view('backend.pages.purchase.unit.edit',compact('punit'));
     }
 
     /**
@@ -102,6 +108,25 @@ class PurchaseUnitController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (is_null($this->user) || !$this->user->can('purchase.unit.edit')) {
+            abort(403, 'Unauthorized Access!');
+        }
+        $punit= PurchaseUnit::find($id);
+        $request->validate([
+            'name' =>  'required|max:50',
+
+        ]);
+        $punit->name = $request->name;
+        $punit->save();
+
+
+        if($punit->save()) {
+            session()->flash('success', 'Unit has been Updated!!');
+        }else{
+            session()->flash('failed', 'Failed Updating Unit!!');
+        }
+        return back();
+
     }
 
     /**

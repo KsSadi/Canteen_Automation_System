@@ -1,5 +1,5 @@
 @section('page-title')
-    Category
+    Unit
 @endsection
 
 

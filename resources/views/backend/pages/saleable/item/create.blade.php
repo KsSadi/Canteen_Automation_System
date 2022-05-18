@@ -21,7 +21,7 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Products Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Products Name" name="name">
+                            <input type="text" class="form-control" placeholder="Products Name" name="name" required>
                         </div>
                     </div>
                     <div class="mb-1 row">
@@ -34,10 +34,11 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Category</label>
                         <div class="col-sm-10">
-                            <select class="select2 form-select" id="select2-basic" name="scat_id">
-                                @foreach($scategorys as $scategory)
+                            <select class="select2 form-select" id="select2-basic" name="scat_id" required>
+                                <option value=""> Select </option>
+                                @foreach($scategories as $scategory)
 
-                                        <option value="{{ $scategory->name }}"> {{ $scategory->name }}</option>
+                                        <option value="{{ $scategory->id }}"> {{ $scategory->name }}</option>
 
                                 @endforeach
                             </select>
@@ -48,10 +49,11 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Unit</label>
                         <div class="col-sm-10">
-                            <select class="select2 form-select" id="select2-basic" name="sunit_id">
+                            <select class="select2 form-select" id="select2-basic" name="sunit_id" required>
+                                <option value=""> Select </option>
                                 @foreach($sunits as $sunit)
 
-                                    <option value="{{ $sunit->name }}"> {{ $sunit->name }}</option>
+                                    <option value="{{ $sunit->id }}"> {{ $sunit->name }}</option>
 
                                 @endforeach
                             </select>
@@ -60,7 +62,7 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Price </label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" placeholder="100" name="price">
+                            <input type="number" class="form-control" placeholder="100" name="price" required>
                         </div>
                     </div>
 {{--                    <div class="mb-1 row">--}}

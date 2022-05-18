@@ -2,19 +2,17 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}" defer></script>
+    <script src="{{ asset('app-assets/vendors/js/ui/jquery.sticky.js') }}" defer></script>
+
+
 
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-{{--    <script src="{{ asset('app-assets/vendors/js/charts/apexcharts.min.js') }}" defer></script>--}}
+    <script src="{{ asset('app-assets/vendors/js/charts/apexcharts.min.js') }}" defer></script>
     <script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}" defer></script>
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/responsive.bootstrap5.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/tables/datatable/buttons.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+
 
 
     <!-- END: Page Vendor JS-->
@@ -55,3 +53,4 @@
             }
         }
     </script>
+@yield('script')

@@ -55,7 +55,11 @@
 
                         <td>{{ $purchase->note }}</td>
                     </tr>
+                    <tr>
+                        <td>Purchase Date </td>
 
+                        <th>{{ $purchase->date }}</th>
+                    </tr>
                     <tr>
                         <td>Created </td>
 

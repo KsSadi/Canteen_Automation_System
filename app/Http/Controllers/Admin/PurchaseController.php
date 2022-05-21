@@ -98,6 +98,7 @@ class PurchaseController extends Controller
         $purchase ->quantity = $request->quantity;
         $purchase ->price = $request->price;
         $purchase ->note = $request->note;
+        $purchase ->date = $request->date;
 
 
         if($purchase->save()) {

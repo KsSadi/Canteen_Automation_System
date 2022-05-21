@@ -1,5 +1,5 @@
 @section('page-title')
-    Item
+    Sales Report
 @endsection
 
 
@@ -8,66 +8,81 @@
 @section('admin-section')
 
     @include('backend.layouts.partials.alerts')
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Sales Report </h4>
 
-    <a href="{{ route('dashboard.sales.create') }}" style="max-width: 220px" class="btn btn-gradient-primary"> <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Sale </a>
+        </div>
+        <p><hr/></p>
 
-    <div style="padding-bottom: 15px;"></div>
-    <div class="card" style="padding-top: 10px;">
+        <div class="card-body">
+            <form  id="date-range" method="POST">
 
-        <table class="table table-report -mt-2">
-            <thead>
-            <tr>
+                <div class="row" style="">
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label" style="font-size: medium">Starting Date</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" placeholder=""id="start_date" name="start_date">
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label" style="font-size: medium">Ending Date</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" placeholder=""id="end_date" name="end_date">
+                        </div>
+                    </div>
 
-                <th class="whitespace-no-wrap">Sale ID</th>
-                <th class="whitespace-no-wrap">Product Name</th>
-                <th class="whitespace-no-wrap">Quantity</th>
-                <th class="whitespace-no-wrap">U. Price</th>
-                <th class="whitespace-no-wrap">Total</th>
-                <th class="whitespace-no-wrap">Date</th>
+                    <div class="sm:ml-20 sm:pl-5 mt-5" >
+                       <center> <input type="submit" class="btn btn-gradient-primary" value="Search" style="margin-top: -100px;"/></center>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="table-container">
 
-
-            </tr>
-            </thead>
-            <tbody>
-
-            @foreach ($sales as $sale)
-                <tr class="intro-x">
-
-                    <td style="text-align:">
-                        <a class="flex items-center mr-3" href="{{ route('dashboard.sales.show', $sale->id) }}">
-                            <span href="" class="font-medium whitespace-no-wrap">{{ $sale->id }}</span>
-                            {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                        </a>
-                    </td>
-
-                    <td style="text-align:">
-                        <a class="flex items-center mr-3" href="{{ route('dashboard.sales.show', $sale->id) }}">
-                            <span href="" class="font-medium whitespace-no-wrap">{{ $sale->product->name }}</span>
-                            {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                        </a>
-                    </td>
-
-                    <td style="text-align:">
-                        <span href="" class="font-medium whitespace-no-wrap">{{ $sale->quantity }}</span>
-                        {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                    </td>
-
-                    <td style="text-align:">
-                        <span href="" class="font-medium whitespace-no-wrap">{{ $sale->price }}</span>
-                        {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                    </td>
-                    <td style="text-align:">
-                        <span href="" class="font-medium whitespace-no-wrap">{{ $sale->price * $sale->quantity }}</span>
-                        {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                    </td>
-                    <td style="text-align:">
-                        <span href="" class="font-medium whitespace-no-wrap">{{ $sale->created_at }}</span>
-                        {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                    </td>
-
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+
+            var form=$('#date-range');
+            form.on('submit',function (e) {
+                e.preventDefault();
+                var _token = $("input[name='_token']").val();
+                var formdata = new FormData(document.getElementById('date-range'));
+                console.log(formdata);
+
+                var actionurl = "{{route('dashboard.reports.sale.date-range')}}";
+
+
+                $.ajax({
+                    url: actionurl,
+                    type:'POST',processData: false, contentType: false,
+                    headers: {
+                        'X-CSRF-Token': _token
+                    },
+                    data: formdata,
+                    success: function(data) {
+                        $("#table-container").html(data.html);
+                        console.log(data)
+
+
+                    }
+                });
+
+
+
+            })
+
+
+
+
+
+
+        });
+
+
+
+    </script>
 @endsection

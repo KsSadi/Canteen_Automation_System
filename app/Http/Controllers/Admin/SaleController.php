@@ -100,6 +100,7 @@ class SaleController extends Controller
         $sale ->quantity = $request->quantity;
         $sale ->price = $request->price;
         $sale ->note = $request->note;
+        $sale ->date = $request->date;
 
 
         if($sale->save()) {

@@ -284,13 +284,13 @@
                 @endif">
                     <a class="d-flex align-items-center" href="javascript:;"><i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Datatable">Report</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.reports.purchase') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">Selling Report</span></a>
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.reports.sales.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">Selling Report</span></a>
                         </li>
 
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.purchase') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Purchases Report</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.purchase.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Purchases Report</span></a>
                         </li>
 
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.salary') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary Report</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.salary.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary Report</span></a>
                         </li>
 
                     </ul>

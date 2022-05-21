@@ -63,6 +63,12 @@
                                 <input readonly type="text" class="form-control"  id="unit" value="" placeholder="" name="punit_id" >
                             </div>
                         </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-2 col-form-label" style="font-size: medium">Purchase Date</label>
+                        <div class="col-sm-10">
+                            <input  type="date" class="form-control" placeholder="" name="date" >
+                        </div>
+                    </div>
 
                         <div class="mb-1 row">
                             <label class="col-sm-2 col-form-label" style="font-size: medium">Note</label>

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SaleReportController extends Controller
 {
@@ -13,15 +14,34 @@ class SaleReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::guard('admin')->user();
+            return $next($request);
+        });
+    }
+    public function DateRange(Request $request)
+    {
+        $from =$request->start_date;
+        $to = $request->end_date;
+
+        $saledates = Sale::whereBetween('date', [$from, $to])->get();
+
+        $view=view('backend.pages.reports.include.sale',compact('saledates'))->render();
+        return ["status"=>'success','html'=>$view ];
+
+    }
+
     public function index()
     {
-        {
-            if (is_null($this->user) || !$this->user->can('report.view')) {
-                abort(403, 'Unauthorized Access!');
-            }
-            $sales = Sale::all();
-            return view('backend.pages.reports.salereport', compact('sales'));
+        if (is_null($this->user) || !$this->user->can('report.view')) {
+            abort(403, 'Unauthorized Access!');
         }
+
+        return view('backend.pages.reports.salereport');
     }
 
     /**

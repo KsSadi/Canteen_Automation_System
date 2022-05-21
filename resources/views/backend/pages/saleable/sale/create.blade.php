@@ -10,7 +10,7 @@
     @include('backend.layouts.partials.alerts')
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Create Sale </h4>
+            <h4 class="card-title">Create Sell </h4>
 
         </div>
         <p><hr/></p>
@@ -61,6 +61,12 @@
                             <label class="col-sm-2 col-form-label" style="font-size: medium">Unit</label>
                             <div class="col-sm-10">
                                 <input readonly type="text" class="form-control"  id="unit" value="" placeholder="" name="sunit_id" >
+                            </div>
+                        </div>
+                    <div class="mb-1 row">
+                            <label class="col-sm-2 col-form-label" style="font-size: medium">Selling date</label>
+                            <div class="col-sm-10">
+                                <input  type="date" class="form-control"  value="" placeholder="" name="date" >
                             </div>
                         </div>
 

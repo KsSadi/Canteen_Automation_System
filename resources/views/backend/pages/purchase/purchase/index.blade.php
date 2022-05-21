@@ -69,7 +69,7 @@
                         {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                     </td>
                     <td style="text-align:">
-                        <span href="" class="font-medium whitespace-no-wrap">{{ $purchase->created_at }}</span>
+                        <span href="" class="font-medium whitespace-no-wrap">{{ $purchase->date }}</span>
                         {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                     </td>
 

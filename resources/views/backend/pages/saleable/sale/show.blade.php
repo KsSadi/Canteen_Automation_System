@@ -50,11 +50,15 @@
 
                         <td>{{ $sale->note }}</td>
                     </tr>
+                    <tr>
+                        <td>Selling Date </td>
 
+                        <th>{{ $sale->date }}</th>
+                    </tr>
                     <tr>
                         <td>Created </td>
 
-                        <th>{{ $sale->created_at }}</th>
+                        <td>{{ $sale->created_at }}</td>
                     </tr>
                     </tbody>
                 </table>

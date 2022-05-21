@@ -22,6 +22,7 @@ class CreatePurchasesTable extends Migration
             $table->double('price');
             $table->double('total_price')->nullable();
             $table->integer('quantity');
+            $table->date('date');
             $table->timestamps();
         });
     }

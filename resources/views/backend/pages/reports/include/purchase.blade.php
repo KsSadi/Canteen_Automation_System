@@ -6,11 +6,11 @@
     $item=0;
 @endphp
 
-@foreach ($saledates as $sale)
+@foreach ($purchasedates as $purchase)
     @php
-        $total= $total+($sale->price * $sale->quantity);
+        $total= $total+($purchase->price * $purchase->quantity);
 
-        $totalquantity= $totalquantity+$sale->quantity;
+        $totalquantity= $totalquantity+$purchase->quantity;
         $item++;
     @endphp
 @endforeach
@@ -33,7 +33,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel130">Sales Report</h5>
+                        <h5 class="modal-title" id="myModalLabel130">Purchase Report</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -41,12 +41,12 @@
                         <hr>
                         End Date -<span style="color: red; font-style: inherit" >{{$to}}</span>
                         <hr>
-                        Total Sale - <span style="color: red; font-style: inherit" >{{$item}}</span>
+                        Total Purchase - <span style="color: red; font-style: inherit" >{{$item}}</span>
                         <hr>
 
                         Total Product Quantity - <span style="color: red; font-style: inherit" >{{$totalquantity}}</span>
                         <hr>
-                        Total Selling Amount - <span style="color: red; font-style: inherit" >{{$total}}</span>
+                        Total Purchasing Amount - <span style="color: red; font-style: inherit" >{{$total}}</span>
                         <hr>
 
                     </div>
@@ -60,6 +60,7 @@
 </div>
 
 
+
 <div style="padding-bottom: 15px;"></div>
 <div class="card" style="padding-top: 10px;" id="date-range">
 
@@ -67,7 +68,7 @@
         <thead>
         <tr>
 
-            <th class="whitespace-no-wrap">Sales ID</th>
+            <th class="whitespace-no-wrap">Purchase ID</th>
             <th class="whitespace-no-wrap">Product</th>
             <th class="whitespace-no-wrap">Quantity</th>
             <th class="whitespace-no-wrap">U. Price</th>
@@ -79,23 +80,23 @@
         </thead>
         <tbody>
 
-        @foreach ($saledates as $saledate)
+        @foreach ($purchasedates as $purchasedate)
             <tr class="intro-x">
 
                 <td style="text-align:">
-                    <a class="flex items-center mr-3" href="{{ route('dashboard.sales.show', $saledate->id) }}">
-                        <span href="" class="font-medium whitespace-no-wrap">{{ $saledate->id }}</span>
+                    <a class="flex items-center mr-3" href="{{ route('dashboard.purchases.show', $purchasedate->id) }}">
+                        <span href="" class="font-medium whitespace-no-wrap">{{ $purchasedate->id }}</span>
                         {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                     </a>
                 </td>
 
                 <td style="text-align:">
-                    <a class="flex items-center mr-3" href="{{ route('dashboard.sales.show', $saledate->id) }}">
+                    <a class="flex items-center mr-3" href="{{ route('dashboard.sales.show', $purchasedate->id) }}">
 
                         <span href="" class="font-medium whitespace-no-wrap">
-                            @if($saledate->product)
+                            @if($purchasedate->product)
 
-                                {{$saledate->product->name}}
+                                {{$purchasedate->product->name}}
                             @else
                                 Not Found
                             @endif
@@ -105,20 +106,20 @@
                 </td>
 
                 <td style="text-align:">
-                    <span href="" class="font-medium whitespace-no-wrap">{{ $saledate->quantity }}</span>
+                    <span href="" class="font-medium whitespace-no-wrap">{{ $purchasedate->quantity }}</span>
                     {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                 </td>
 
                 <td style="text-align:">
-                    <span href="" class="font-medium whitespace-no-wrap">{{ $saledate->price }}</span>
+                    <span href="" class="font-medium whitespace-no-wrap">{{ $purchasedate->price }}</span>
                     {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                 </td>
                 <td style="text-align:">
-                    <span href="" class="font-medium whitespace-no-wrap">{{ $saledate->price * $saledate->quantity }}</span>
+                    <span href="" class="font-medium whitespace-no-wrap">{{ $purchasedate->price * $purchasedate->quantity }}</span>
                     {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                 </td>
                 <td style="text-align:">
-                    <span href="" class="font-medium whitespace-no-wrap">{{ $saledate->date }}</span>
+                    <span href="" class="font-medium whitespace-no-wrap">{{ $purchasedate->date }}</span>
                     {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                 </td>
 

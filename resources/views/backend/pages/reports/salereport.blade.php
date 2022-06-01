@@ -38,9 +38,10 @@
                 </div>
             </form>
         </div>
-        <div id="table-container">
 
-        </div>
+    </div>
+    <div id="table-container">
+
     </div>
 
     <script>

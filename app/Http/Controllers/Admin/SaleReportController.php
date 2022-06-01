@@ -30,7 +30,7 @@ class SaleReportController extends Controller
 
         $saledates = Sale::whereBetween('date', [$from, $to])->get();
 
-        $view=view('backend.pages.reports.include.sale',compact('saledates'))->render();
+        $view=view('backend.pages.reports.include.sale',compact('saledates','from','to'))->render();
         return ["status"=>'success','html'=>$view ];
 
     }

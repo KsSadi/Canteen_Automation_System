@@ -90,6 +90,8 @@ class RolePermissionSeeder extends Seeder
             'stock.view',
             'stockout.view',
             'stockout.create',
+            'expense.view',
+
 
             //permissions names for Stock
             'report.view',

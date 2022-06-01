@@ -204,6 +204,24 @@
             @endif
 
 
+            @if (Auth::guard('admin')->user()->can('expense.view'))
+
+
+                <li class=" nav-item  @if (Request::is('dashboard/expenses*'))
+                    nav-item active
+                   @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='hash'></i><span class="menu-title text-truncate" data-i18n="Datatable">Expense</span></a>
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.expense.other.index') }}"><i data-feather='edit'></i><span class="menu-item text-truncate" data-i18n="Basic">Other's Expenses</span></a>
+                        </li>
+                        @if (Auth::guard('admin')->user()->can('employee.salary'))
+                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.expense.salary.index') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Employee Salary</span></a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+
+
             {{--End Stock Product--}}
 
             {{--Start User--}}
@@ -224,10 +242,7 @@
                             <li><a class="d-flex align-items-center " href="{{ route('dashboard.employees.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Employee</span></a>
                             </li>
                         @endif
-                        @if (Auth::guard('admin')->user()->can('employee.salary'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.employees.salary.index') }}"><i data-feather='dollar-sign'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary</span></a>
-                            </li>
-                        @endif
+
                     </ul>
                 </li>
 

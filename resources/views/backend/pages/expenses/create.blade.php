@@ -10,48 +10,36 @@
     @include('backend.layouts.partials.alerts')
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Add Salary </h4>
+            <h4 class="card-title">Add Expenses </h4>
 
         </div>
         <p><hr/></p>
 
         <div class="card-body">
-            <form action="{{ route('dashboard.expense.salary.store') }}" method="POST">
+            <form action="{{ route('dashboard.expense.other.store') }}" method="POST">
                 @csrf
                 <div class="row" style="">
-                    <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label" style="font-size: medium">Employee Name</label>
-                        <div class="col-sm-10">
-                            <select class="select2 form-select" id="employee" name="employee" required>
-                                <option value="">Choose</option>
-                                @foreach($employees as $employee)
-                                         @if($employee->status==1)
-                                    <option value="{{ $employee->id }}"> {{ $employee->name }}</option>
-                                        @endif
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+
 
 
                     <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label" style="font-size: medium">Designation</label>
+                        <label class="col-sm-2 col-form-label" style="font-size: medium">Expenses Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" value="" id="designation" placeholder="" name="designation" readonly>
+                            <input type="text" class="form-control" value="" id="name" placeholder="" name="name">
                         </div>
                     </div>
 
                     <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label" style="font-size: medium">Salary Amount</label>
+                        <label class="col-sm-2 col-form-label" style="font-size: medium">Expense Amount</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" value="" id="salary" placeholder="" name="salary" required>
+                            <input type="number" class="form-control" value="" id="amount" placeholder="" name="amount" required>
                         </div>
                     </div>
 
                     <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label" style="font-size: medium">Salary Date</label>
+                        <label class="col-sm-2 col-form-label" style="font-size: medium">Expense Date</label>
                         <div class="col-sm-10">
-                            <input  type="date" class="form-control"  id="salary_date" value="" placeholder="" name="salary_date" required>
+                            <input  type="date" class="form-control"  id="date" value="" placeholder="" name="date" required>
                         </div>
                     </div>
 

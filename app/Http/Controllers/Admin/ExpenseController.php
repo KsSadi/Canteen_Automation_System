@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\CAS;
+namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
+use App\Models\Expenses;
 use Illuminate\Http\Request;
-use App\Models\Employee;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-class EmployeesController extends Controller
+
+class ExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +15,7 @@ class EmployeesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public $user;
+
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -25,17 +25,13 @@ class EmployeesController extends Controller
     }
     public function index()
     {
-
         //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('employee.view')) {
+        if (is_null($this->user) || !$this->user->can('expense.view')) {
             abort(403, 'Unauthorized Access!');
         }
-        //
+        $expenses = Expenses::all();
 
-        $employees = Employee::all();
-        return view('backend.pages.employee.index', compact('employees'));
-
-
+        return view('backend.pages.expenses.index',compact('expenses'));
     }
 
     /**
@@ -45,15 +41,12 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('employee.create')) {
+        if (is_null($this->user) || !$this->user->can('expense.view')) {
             abort(403, 'Unauthorized Access!');
         }
-        //
 
-        $employees = Employee::all();
-        return view('backend.pages.employee.create', compact('employees'));
 
+        return view('backend.pages.expenses.create');
     }
 
     /**
@@ -64,34 +57,25 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('employee.create')) {
+        if (is_null($this->user) || !$this->user->can('expense.view')) {
             abort(403, 'Unauthorized Access!');
         }
-        //Validate form
-        $request->validate([
-            'name' =>  'required|max:50',
-            'mobile' => 'required|max:14',
-            'post' => 'required|max:14',
-            'salary' => 'required|max:14',
 
-        ]);
+        $expense = new Expenses();
+        $expense ->name = $request->name;
 
-        $employees = new Employee();
-        $employees->name = $request->name;
-        $employees->email = $request->email;
-        $employees->mobile = $request->mobile;
-        $employees->post = $request->post;
-        $employees->salary = $request->salary;
-        $employees->join_date = $request->join_date;
+        $expense ->amount = $request->amount;
+        $expense ->date = $request->date;
+        $expense ->note = $request->note;
 
-        $employees->save();
 
-        if (!empty($request->roles)) {
-            $admin->assignRole($request->roles);
+        if($expense->save()) {
+            session()->flash('success', 'Expense has been Created!!');
+        }else{
+            session()->flash('failed', 'Failed Creating Expense!!');
         }
-        session()->flash('success', 'Employee has been Created!!');
         return back();
+
     }
 
     /**
@@ -136,18 +120,17 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function employeeStatus($id){
-        $getStatus = Employee:: select('status')->where('id',$id)->first();
-        if($getStatus->status==1){
-            $status = 0;
-        }else{
-            $status = 1;
+        if (is_null($this->user) || !$this->user->can('expense.view')) {
+            abort(403, 'Unauthorized Access!');
         }
-        Employee::where('id',$id)->update(['status'=>$status]);
-        session()->flash('success', 'Status has been Changed !!');
-        return redirect()->back();
+
+        $expense=Salary::find($id);
+        if(!is_null($expense)){
+            $expense->delete();
+            session()->flash('success', 'Expense Data   has been Deleted!!');
+        }else {
+            session()->flash('failed', 'Expense Data  could not be deleted!!');
+        }
+        return back();
     }
 }

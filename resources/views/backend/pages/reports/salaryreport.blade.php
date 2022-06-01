@@ -1,5 +1,5 @@
 @section('page-title')
-Sales Report
+    Salary Report
 @endsection
 
 
@@ -10,7 +10,7 @@ Sales Report
     @include('backend.layouts.partials.alerts')
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Date Range </h4>
+            <h4 class="card-title">Salary Report </h4>
 
         </div>
         <p><hr/></p>
@@ -22,23 +22,26 @@ Sales Report
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Starting Date</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" placeholder="" name="start_date">
+                            <input type="date" class="form-control" placeholder=""id="start_date" name="start_date">
                         </div>
                     </div>
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Ending Date</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" placeholder="" name="end_date">
+                            <input type="date" class="form-control" placeholder=""id="end_date" name="end_date">
                         </div>
                     </div>
 
-
-                    <div class="sm:ml-20 sm:pl-5 mt-5">
-                        <input type="submit" class="btn btn-gradient-primary" value="Create" />
+                    <div class="sm:ml-20 sm:pl-5 mt-5" >
+                        <center> <input type="submit" class="btn btn-gradient-primary" value="Search" style="margin-top: -100px;"/></center>
                     </div>
                 </div>
             </form>
         </div>
+
+    </div>
+    <div id="table-container">
+
     </div>
 
     <script>
@@ -51,7 +54,7 @@ Sales Report
                 var formdata = new FormData(document.getElementById('date-range'));
                 console.log(formdata);
 
-                var actionurl = "{{route('dashboard.reports.sale.date-range')}}";
+                var actionurl = "{{route('dashboard.reports.salary.date-range')}}";
 
 
                 $.ajax({

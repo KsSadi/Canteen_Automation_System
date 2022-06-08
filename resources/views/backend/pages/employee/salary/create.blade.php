@@ -58,7 +58,7 @@
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Note</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" placeholder="Products Description" name="note" rows="4" cols="50"></textarea>
+                            <textarea class="form-control" placeholder="" name="note" rows="4" cols="50"></textarea>
                         </div>
                     </div>
 

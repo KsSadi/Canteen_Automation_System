@@ -178,27 +178,14 @@
 
                 <li class=" nav-item  @if (Request::is('dashboard/stock*'))
                     nav-item active
-                @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='bar-chart-2'></i><span class="menu-title text-truncate" data-i18n="Datatable">Current Stock</span></a>
+                @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='bar-chart-2'></i><span class="menu-title text-truncate" data-i18n="Datatable">Stock</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">View Stock</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.stock') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Current  Stock</span></a>
                         </li>
 
-                    </ul>
-                </li>
-            @endif
-            @if (Auth::guard('admin')->user()->can('stockout.view'))
-
-
-                <li class=" nav-item  @if (Request::is('dashboard/roless*'))
-                    nav-item active
-@endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='log-out'></i><span class="menu-title text-truncate" data-i18n="Datatable">Stock Out</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('dashboard') }}/roles"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">View Item</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.stock.out') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Stock Out</span></a>
                         </li>
-                        @if (Auth::guard('admin')->user()->can('stockout.create'))
-                            <li><a class="d-flex align-items-center " href="{{ route('dashboard.roles.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Create Item</span></a>
-                            </li>
-                        @endif
+
                     </ul>
                 </li>
             @endif
@@ -307,7 +294,8 @@
 
                         <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.salary.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Salary Report</span></a>
                         </li>
-
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.expense.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Expenses Report</span></a>
+                        </li>
                     </ul>
                 </li>
             @endif

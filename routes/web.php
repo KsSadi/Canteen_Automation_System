@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,6 +25,12 @@ Route::get('/dashboard_old', function () {
 })->middleware(['auth'])->name('dashboard_old');
 
 Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/test', function(){
+        $a = \App\Models\Purchase::all();
+        dd($a);
+    });
+    Route::get('stocks', 'App\Http\Controllers\Admin\StockController@index')->name('dashboard.stock');
+    Route::get('stocks-out', 'App\Http\Controllers\Admin\StockOutController@index')->name('dashboard.stock.out');
     Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::resource('roles', 'App\Http\Controllers\RolesController', ['names' => 'dashboard.roles']);
     Route::resource('admins', 'App\Http\Controllers\AdminsController', ['names' => 'dashboard.admins']);
@@ -42,6 +50,8 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::post('reports-sale', 'App\Http\Controllers\Admin\SaleReportController@DateRange')->name('dashboard.reports.sale.date-range');
     Route::resource('salary-report', 'App\Http\Controllers\Admin\SalaryReportController', ['names' => 'dashboard.reports.salary']);
     Route::post('reports-salary', 'App\Http\Controllers\Admin\SalaryReportController@DateRange')->name('dashboard.reports.salary.date-range');
+    Route::resource('expense-report', 'App\Http\Controllers\Admin\ExpenseReportController', ['names' => 'dashboard.reports.expense']);
+    Route::post('reports-expense', 'App\Http\Controllers\Admin\ExpenseReportController@DateRange')->name('dashboard.reports.expense.date-range');
 
     Route::resource('purchase-report', 'App\Http\Controllers\Admin\PurchaseReportController', ['names' => 'dashboard.reports.purchase']);
     Route::post('reports-purchase', 'App\Http\Controllers\Admin\PurchaseReportController@DateRange')->name('dashboard.reports.purchase.date-range');

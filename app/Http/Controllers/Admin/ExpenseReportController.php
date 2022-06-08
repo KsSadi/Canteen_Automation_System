@@ -7,7 +7,7 @@ use App\Models\Expenses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ExpenseController extends Controller
+class ExpenseReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,15 +23,24 @@ class ExpenseController extends Controller
             return $next($request);
         });
     }
+    public function DateRange(Request $request)
+    {
+        $from =$request->start_date;
+        $to = $request->end_date;
+
+        $expensedates = Expenses::whereBetween('date', [$from, $to])->get();
+
+        $view=view('backend.pages.reports.include.expense',compact('expensedates','from','to'))->render();
+        return ["status"=>'success','html'=>$view ];
+
+    }
     public function index()
     {
-        //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('expense.view')) {
+        if (is_null($this->user) || !$this->user->can('report.view')) {
             abort(403, 'Unauthorized Access!');
         }
-        $expenses = Expenses::all();
 
-        return view('backend.pages.expenses.index',compact('expenses'));
+        return view('backend.pages.reports.expensereport');
     }
 
     /**
@@ -41,12 +50,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('expense.view')) {
-            abort(403, 'Unauthorized Access!');
-        }
-
-
-        return view('backend.pages.expenses.create');
+        //
     }
 
     /**
@@ -57,25 +61,7 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        if (is_null($this->user) || !$this->user->can('expense.view')) {
-            abort(403, 'Unauthorized Access!');
-        }
-
-        $expense = new Expenses();
-        $expense ->name = $request->name;
-
-        $expense ->amount = $request->amount;
-        $expense ->date = $request->date;
-        $expense ->note = $request->note;
-
-
-        if($expense->save()) {
-            session()->flash('success', 'Expense has been Created!!');
-        }else{
-            session()->flash('failed', 'Failed Creating Expense!!');
-        }
-        return back();
-
+        //
     }
 
     /**
@@ -120,17 +106,6 @@ class ExpenseController extends Controller
      */
     public function destroy($id)
     {
-        if (is_null($this->user) || !$this->user->can('expense.view')) {
-            abort(403, 'Unauthorized Access!');
-        }
-
-        $expense=Expenses::find($id);
-        if(!is_null($expense)){
-            $expense->delete();
-            session()->flash('success', 'Expense Data   has been Deleted!!');
-        }else {
-            session()->flash('failed', 'Expense Data  could not be deleted!!');
-        }
-        return back();
+        //
     }
 }

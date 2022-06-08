@@ -77,12 +77,13 @@
             <div class="col-xl-4 col-md-6 col-12">
                 <div class="card card-congratulation-medal">
                     <div class="card-body">
-                        <h5>Congratulations 🎉 John!</h5>
-                        <p class="card-text font-small-3">You have won gold medal</p>
+                        <h5>Track Your Sale</h5>
+                        <p class="card-text font-small-3">Total sale in this month </p>
                         <h3 class="mb-75 mt-2 pt-50">
-                            <a href="#">$48.9k</a>
+                            <a href="#">{{$totalsale}} ৳ </a>
                         </h3>
-                        <button type="button" class="btn btn-primary">New Sales</button>
+{{--                        <button type="button" class="btn btn-primary">New Sales</button>--}}
+                        <a class="btn btn-primary" href="{{ route('dashboard.sales.create') }}" role="button">New Sales</a>
                         <img src="app-assets/images/illustration/badge.svg" class="congratulation-medal" alt="Medal Pic" />
                     </div>
                 </div>

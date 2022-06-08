@@ -61,6 +61,7 @@ class DashboardController extends Controller
             $sale=SaleItem::count();
             $cat=sCategory::count();
             $employee=Employee::count();
+           // dd($salaries);
 
             return view('backend.pages.dashboard.index', compact('statData','saleitems','lastsalaries','lastexpenses','lastpurchases','expenses','purchaseitems','salaries','sale','cat','employee','lastsales'));
         }

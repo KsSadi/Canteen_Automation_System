@@ -20,7 +20,7 @@
                     <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
                         <div class="d-flex align-items-center justify-content-center">
                             <img
-                                src="../../../app-assets/images/pages/eCommerce/1.png"
+                                src="../../../app-assets/images/elements/profile.png"
                                 class="img-fluid product-img"
                                 alt="product image"
                             />

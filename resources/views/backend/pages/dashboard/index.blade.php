@@ -96,7 +96,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Statistics</h4>
                         <div class="d-flex align-items-center">
-                            <p class="card-text font-small-2 me-25 mb-0">Updated 1 month ago</p>
+                            <p class="card-text font-small-2 me-25 mb-0"></p>
                         </div>
                     </div>
                     <div class="card-body statistics-body">

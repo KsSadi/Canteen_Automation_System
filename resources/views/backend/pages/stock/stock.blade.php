@@ -27,25 +27,28 @@
             </tr>
             </thead>
             <tbody>
+            @php
+            $i=0;
+            @endphp
 
             @foreach ($purchases as $purchase)
                 <tr class="intro-x">
 
                     <td style="text-align:">
-                        <a class="flex items-center mr-3" href="{{ route('dashboard.purchases.show',1) }}">
-                            <span href="" class="font-medium whitespace-no-wrap">1</span>
+
+                            <span href="" class="font-medium whitespace-no-wrap">{{$i=$i+1}}</span>
                             {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                        </a>
+
                     </td>
 
                     <td style="text-align:">
-                        <a class="flex items-center mr-3" href="{{ route('dashboard.purchases.show', 1) }}">
+
 
                         <span href="" class="font-medium whitespace-no-wrap">
                             {{ \App\Models\PurchaseItem::where('id', $purchase->name)->first()->name }}
                         </span>
                             {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
-                        </a>
+
                     </td>
 
                     <td style="text-align:">

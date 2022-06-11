@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\pCategory;
-use App\Models\Purchase;
-use App\Models\PurchaseItem;
-use App\Models\PurchaseUnit;
+use App\Models\Production;
+use App\Models\Sale;
+use App\Models\SaleItem;
+use App\Models\SaleUnit;
+use App\Models\sCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PurchaseController extends Controller
+class ProductionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,19 +29,21 @@ class PurchaseController extends Controller
     }
     public function findProductList(Request $request){
         $product=$request->product_id;
-        $product = PurchaseItem::find($product);
+
+        $product= SaleItem::find($product);
         $cat="";
         $product_price=$product->price;
-        $product_unit=$product->punit_id;
-        $unit= PurchaseUnit::find($product_unit);
+        $product_unit=$product->sunit_id;
+        $unit= SaleUnit::find($product_unit);
 
 //        return response($products);
         return ["status"=>'success','price'=>$product_price,'unit'=>$unit->name];
 
     }
+
     public function findProduct(Request $request){
         $category=$request->category_id;
-        $products= PurchaseItem::where('pcat_id',$category)->get();
+        $products= SaleItem::where('scat_id',$category)->get();
         $cat=' <option value="">Choose</option>';
         foreach ($products as $product )
         {
@@ -53,15 +56,16 @@ class PurchaseController extends Controller
 //        return ["status"=>'success','sadi']
 
     }
-
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('purchase.view')) {
+
+        if (is_null($this->user) || !$this->user->can('sale.production.view')) {
             abort(403, 'Unauthorized Access!');
         }
 
-        $purchases = Purchase::all();
-        return view('backend.pages.purchase.purchase.index',compact('purchases'));
+        $sales = Production::all();
+
+        return view('backend.pages.saleable.production.index',compact('sales'));
     }
 
     /**
@@ -71,12 +75,13 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('purchase.create')) {
+        if (is_null($this->user) || !$this->user->can('sale.production.create')) {
             abort(403, 'Unauthorized Access!');
         }
-        $categories = pCategory::all();
-        return view('backend.pages.purchase.purchase.create',compact('categories'));
+
+        $categories = sCategory::all();
+
+        return view('backend.pages.saleable.production.create',compact('categories'));
     }
 
     /**
@@ -87,28 +92,24 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        if (is_null($this->user) || !$this->user->can('sale.create')) {
+        if (is_null($this->user) || !$this->user->can('sale.production.create')) {
             abort(403, 'Unauthorized Access!');
         }
 
-        $purchase = new Purchase();
-        $purchase ->name = $request->name;
-        $purchase ->pcat_id = $request->pcat_id;
-        $purchase ->punit_id = $request->punit_id;
-        $purchase ->quantity = $request->quantity;
-        $purchase ->price = $request->price;
-        $purchase ->note = $request->note;
-        $purchase ->date = $request->date;
+        $sale = new Production();
+        $sale ->name = $request->name;
+        $sale ->scat_id = $request->scat_id;
+        $sale ->sunit_id = $request->sunit_id;
+        $sale ->quantity = $request->quantity;
+        $sale ->price = $request->price;
+        $sale ->note = $request->note;
+        $sale ->date = $request->date;
 
 
-        if($purchase->save()) {
-
-            $purchaseItem = PurchaseItem::findOrFail($request->name);
-            $purchaseItem->current_stock +=  $request->quantity;
-            $purchaseItem->save();
-            session()->flash('success', 'Purchase has been Created!!');
+        if($sale->save()) {
+            session()->flash('success', 'Production has been Created !!');
         }else{
-            session()->flash('failed', 'Failed Creating Purchase!!');
+            session()->flash('failed', 'Failed Creating Production !!');
         }
         return back();
     }
@@ -121,14 +122,7 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('sale.view')) {
-            abort(403, 'Unauthorized Access!');
-        }
-
-        $purchase = Purchase::findOrFail($id);
-
-        return view('backend.pages.purchase.purchase.show',compact('purchase'));
+        //
     }
 
     /**
@@ -162,22 +156,18 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
-        //
-        //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('purchase.delete')) {
+        if (is_null($this->user) || !$this->user->can('sale.production.delete')) {
             abort(403, 'Unauthorized Access!');
         }
 
-        $purchase =Purchase::find($id);
+        $sale= Production::find($id);
 
-        if(!is_null($purchase)){
-            $purchase->delete();
-            session()->flash('success', 'Purchase   has been Deleted!!');
+        if(!is_null($sale)){
+            $sale->delete();
+            session()->flash('success', 'Production  has been Deleted!!');
         }else {
-            session()->flash('failed', 'Purchase  could not be deleted!!');
+            session()->flash('failed', 'Production could not be deleted!!');
         }
         return back();
     }
-
-
 }

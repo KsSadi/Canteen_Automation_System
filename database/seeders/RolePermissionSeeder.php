@@ -66,6 +66,10 @@ class RolePermissionSeeder extends Seeder
             'sale.category.edit',
             'sale.category.create',
             'sale.category.delete',
+            'sale.production.view',
+            'sale.production.create',
+            'sale.production.delete',
+
 
 
             //permissions names for Purchase Products
@@ -88,6 +92,8 @@ class RolePermissionSeeder extends Seeder
 
             //permissions names for Stock
             'stock.view',
+            'stock.edit',
+
             'stockout.view',
             'stockout.create',
             'expense.view',

@@ -1,5 +1,5 @@
 @section('page-title')
-    Roles Control
+    Salary
 @endsection
 
 

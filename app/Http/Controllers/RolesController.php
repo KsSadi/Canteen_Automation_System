@@ -183,7 +183,7 @@ class RolesController extends Controller
             abort(403, 'Unauthorized Access!');
         }
         //
-        $role = Role::findById($id);
+        $role = Role::find($id);
         if (!is_null($role)) {
             $role->delete();
         }

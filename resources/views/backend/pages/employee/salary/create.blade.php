@@ -1,5 +1,5 @@
 @section('page-title')
-   Salaries
+   Add Salaries
 @endsection
 
 

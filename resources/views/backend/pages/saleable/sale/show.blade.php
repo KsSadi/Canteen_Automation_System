@@ -1,5 +1,5 @@
 @section('page-title')
-    Create Sale
+   Sales - {{ $sale->product->name }}
 @endsection
 
 
@@ -69,6 +69,7 @@
 {{--                    <i data-feather="edit" class="me-50"></i>--}}
 {{--                    <span class="edit">Edit</span>--}}
 {{--                </a>--}}
+             @if (Auth::guard('admin')->user()->can('sale.delete'))
                 <a class="btn btn-danger btn-wishlist me-0 me-sm-1 mb-1 mb-sm-0" href="{{ route('dashboard.sales.destroy', $sale->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $sale->id }}').submit()">
                     <i data-feather="trash" class="me-50"></i>
                     <span>Delete</span>
@@ -77,7 +78,7 @@
                     @method('DELETE')
                     @csrf
                 </form>
-
+            @endif
             </div>
     </div>
     </div>

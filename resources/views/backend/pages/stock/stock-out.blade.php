@@ -1,5 +1,5 @@
 @section('page-title')
-    Create Sale
+   Stock Out
 @endsection
 
 
@@ -16,7 +16,7 @@
         <p><hr/></p>
 
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="{{ route('dashboard.stock.out.store') }}" method="POST">
                 @csrf
                 <div class="row" style="">
                     <div class="mb-1 row">
@@ -24,7 +24,11 @@
                         <div class="col-sm-10">
                             <select class="select2 form-select" id="category" name="pcat_id" required>
                                 <option value="">Choose</option>
+                                @foreach($categories as $category)
 
+                                    <option value="{{ $category->id }}"> {{ $category->name }}</option>
+
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -46,12 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label" style="font-size: medium">Price</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" value="" id="price" placeholder="" name="price" required>
-                        </div>
-                    </div>
+
 
                     <div class="mb-1 row">
                         <label class="col-sm-2 col-form-label" style="font-size: medium">Unit</label>

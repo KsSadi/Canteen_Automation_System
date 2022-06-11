@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\pCategory;
-use App\Models\PurchaseItem;
+use App\Models\Production;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StockController extends Controller
+class ProductionReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,17 +23,24 @@ class StockController extends Controller
             return $next($request);
         });
     }
+    public function DateRange(Request $request)
+    {
+        $from =$request->start_date;
+        $to = $request->end_date;
 
+        $productiondates = Production::whereBetween('date', [$from, $to])->get();
+
+        $view=view('backend.pages.reports.include.production',compact('productiondates','from','to'))->render();
+        return ["status"=>'success','html'=>$view ];
+
+    }
     public function index()
     {
-        //Check and guard the permission
-        if (is_null($this->user) || !$this->user->can('stock.view')) {
+        if (is_null($this->user) || !$this->user->can('report.view')) {
             abort(403, 'Unauthorized Access!');
         }
 
-        $purchaseItems = PurchaseItem::all();
-
-        return view('backend.pages.stock.stock', ['purchases' => $purchaseItems]);
+        return view('backend.pages.reports.productionreport');
     }
 
     /**
@@ -77,14 +83,7 @@ class StockController extends Controller
      */
     public function edit($id)
     {
-        if (is_null($this->user) || !$this->user->can('stock.edit')) {
-            abort(403, 'Unauthorized Access!');
-        }
-
-        $purchaseItem = PurchaseItem::find($id);
-        $pcategories = pCategory::all();
-
-        return view('backend.pages.stock.stock-edit',compact('purchaseItem','pcategories'));
+        //
     }
 
     /**
@@ -96,20 +95,7 @@ class StockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (is_null($this->user) || !$this->user->can('stock.edit')) {
-            abort(403, 'Unauthorized Access!');
-        }
-
-        $purchaseItem = PurchaseItem::find($id);
-        $purchaseItem->current_stock = $request->current_stock;
-        $purchaseItem->save();
-
-        if($purchaseItem->save()) {
-            session()->flash('success', 'Stock has been Updated!!');
-        }else{
-            session()->flash('failed', 'Failed Updating Stock !!');
-        }
-        return back();
+        //
     }
 
     /**

@@ -60,10 +60,14 @@
 
                         <hr />
                         <div class="d-flex flex-column flex-sm-row pt-1">
+                            @if (Auth::guard('admin')->user()->can('sale.item.edit'))
                             <a href="{{ route('dashboard.sale.item.edit', $sitems->id) }}" class="btn btn-info btn-cart me-0 me-sm-1 mb-1 mb-sm-0">
                                 <i data-feather="edit" class="me-50"></i>
                                 <span class="edit">Edit</span>
                             </a>
+                            @endif
+
+                                @if (Auth::guard('admin')->user()->can('sale.item.delete'))
                             <a class="btn btn-danger btn-wishlist me-0 me-sm-1 mb-1 mb-sm-0" href="{{ route('dashboard.sale.item.destroy', $sitems->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $sitems->id }}').submit()">
                                 <i data-feather="delete" class="me-50"></i>
                                 <span>Delete</span>
@@ -72,7 +76,7 @@
                                 @method('DELETE')
                                 @csrf
                             </form>
-
+                                @endif
                         </div>
                     </div>
                 </div>

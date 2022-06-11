@@ -40,6 +40,13 @@
                 </div>
 
                 <div class="mb-1 row">
+                    <label class="col-sm-2 col-form-label" style="font-size: medium">Phone</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" placeholder="0171111111" name="phone">
+                    </div>
+                </div>
+
+                <div class="mb-1 row">
                     <label class="col-sm-2 col-form-label" style="font-size: medium">Password</label>
                     <div class="col-sm-10">
                     <input type="password" class="form-control" placeholder="Enter Password" name="password">

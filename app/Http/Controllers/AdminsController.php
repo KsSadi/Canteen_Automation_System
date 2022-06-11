@@ -78,6 +78,7 @@ class AdminsController extends Controller
         $admin = new Admin();
         $admin->name = $request->name;
         $admin->email = $request->email;
+        $admin->phone = $request->phone;
         $admin->username = $request->username;
         $admin->password = Hash::make($request->password);
         $admin->save();

@@ -1,5 +1,5 @@
 @section('page-title')
-    Create Purchases
+    Create Productions
 @endsection
 
 
@@ -10,19 +10,19 @@
     @include('backend.layouts.partials.alerts')
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Create Sale </h4>
+            <h4 class="card-title">Create Sell </h4>
 
         </div>
         <p><hr/></p>
 
         <div class="card-body">
-            <form action="{{ route('dashboard.purchases.store') }}" method="POST">
+            <form action="{{ route('dashboard.sales.production.store') }}" method="POST">
                 @csrf
                 <div class="row" style="">
                       <div class="mb-1 row">
                             <label class="col-sm-2 col-form-label" style="font-size: medium">Category</label>
                             <div class="col-sm-10">
-                                <select class="select2 form-select" id="category" name="pcat_id" required>
+                                <select class="select2 form-select" id="category" name="scat_id" required>
                                     <option value="">Choose</option>
                                     @foreach($categories as $category)
 
@@ -60,15 +60,15 @@
                         <div class="mb-1 row">
                             <label class="col-sm-2 col-form-label" style="font-size: medium">Unit</label>
                             <div class="col-sm-10">
-                                <input readonly type="text" class="form-control"  id="unit" value="" placeholder="" name="punit_id" >
+                                <input readonly type="text" class="form-control"  id="unit" value="" placeholder="" name="sunit_id" >
                             </div>
                         </div>
                     <div class="mb-1 row">
-                        <label class="col-sm-2 col-form-label" style="font-size: medium">Purchase Date</label>
-                        <div class="col-sm-10">
-                            <input  type="date" class="form-control" placeholder="" name="date" >
+                            <label class="col-sm-2 col-form-label" style="font-size: medium">Making date</label>
+                            <div class="col-sm-10">
+                                <input  type="date" class="form-control"  value="" placeholder="" name="date" >
+                            </div>
                         </div>
-                    </div>
 
                         <div class="mb-1 row">
                             <label class="col-sm-2 col-form-label" style="font-size: medium">Note</label>
@@ -94,7 +94,7 @@
                 var _token = $("input[name='_token']").val();
                 var searchValue =  $("#product").val();
                 console.log(searchValue)
-                var actionurl = "{{route('getpproduct')}}";
+                var actionurl = "{{route('getproduct')}}";
 
                 if(searchValue.length>0)
                 {
@@ -126,7 +126,7 @@
             $("#category").on('change',function () {
                var _token = $("input[name='_token']").val();
                var searchValue =  $("#category").val();
-               var actionurl = "{{route('getpcategory')}}";
+               var actionurl = "{{route('getcategory')}}";
                if(searchValue.length>0)
                {
 

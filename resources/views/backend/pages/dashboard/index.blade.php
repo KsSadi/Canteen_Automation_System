@@ -169,6 +169,9 @@
                                 <h6 class="fw-bolder">Sale</h6>
                                 <h2 class="fw-bolder mb-1 text-success">{{$totalsale}} ৳ </h2>
                                 {{--                                    <div id="statistics-order-chart"></div>--}}
+                                <div class="d-flex align-items-center">
+                                    <p class="card-text font-small-2 me-25 mb-0">Current Month</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -182,6 +185,9 @@
 
                                 <h2 class="fw-bolder mb-1 text-danger">{{$totalpurchase}} ৳ </h2>
                                 {{--                                    <div id="statistics-profit-chart"></div>--}}
+                                <div class="d-flex align-items-center">
+                                    <p class="card-text font-small-2 me-25 mb-0">Current Month</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -193,6 +199,9 @@
                                 <h6>Salary</h6>
                                 <h2 class="fw-bolder mb-1 text-danger">{{$totalsalary}}  ৳ </h2>
                                 {{--                                    <div id="statistics-profit-chart"></div>--}}
+                                <div class="d-flex align-items-center">
+                                    <p class="card-text font-small-2 me-25 mb-0">Current Month</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -204,6 +213,9 @@
                                 <h6>Expenses</h6>
                                 <h2 class="fw-bolder mb-1 text-danger">{{$totalexpense}} ৳</h2>
                                 {{--                                    <div id="statistics-profit-chart"></div>--}}
+                                <div class="d-flex align-items-center">
+                                    <p class="card-text font-small-2 me-25 mb-0">Current Month</p>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 @section('page-title')
-    Create Sale
+    Purchases
 @endsection
 
 

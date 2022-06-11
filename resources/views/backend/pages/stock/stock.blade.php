@@ -1,5 +1,5 @@
 @section('page-title')
-    Purchase
+    Current Stock
 @endsection
 
 
@@ -22,6 +22,12 @@
                 <th class="whitespace-no-wrap">Quantity</th>
                 <th class="whitespace-no-wrap">Unit</th>
 
+                @if (Auth::guard('admin')->user()->can('stock.edit'))
+                    <th class="text-center whitespace-no-wrap">ACTIONS</th>
+                @else
+                    <th></th>
+                @endif
+
 
 
             </tr>
@@ -36,7 +42,7 @@
 
                     <td style="text-align:">
 
-                            <span href="" class="font-medium whitespace-no-wrap">{{$i=$i+1}}</span>
+                            <span href="" class="font-medium whitespace-no-wrap">{{ $purchase->id }}</span>
                             {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
 
                     </td>
@@ -45,23 +51,32 @@
 
 
                         <span href="" class="font-medium whitespace-no-wrap">
-                            {{ \App\Models\PurchaseItem::where('id', $purchase->name)->first()->name }}
+                            {{ $purchase->name }}
                         </span>
                             {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
 
                     </td>
 
                     <td style="text-align:">
-                        <span href="" class="font-medium whitespace-no-wrap">{{ $purchase->total }}</span>
+                        <span href="" class="font-medium whitespace-no-wrap">{{ $purchase->current_stock }}</span>
                         {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                     </td>
                     <td style="text-align:">
-                        <span href="" class="font-medium whitespace-no-wrap"> {{$purchase->punit_id}}
+                        <span href="" class="font-medium whitespace-no-wrap"> {{ $purchase->unit->name }}
 
                           </span>
                         {{--                        <div class="text-gray-600 text-xs whitespace-no-wrap"> <span class="badge badge bg-info">{{ $employee->post }}</span></div>--}}
                     </td>
+                    <td style="text-align: center">
+                        <div class="flex justify-center items-center" >
+                            @if (Auth::guard('admin')->user()->can('stock.edit'))
+                            <a class="flex items-center mr-3" href="{{ route('dashboard.stock.edit', $purchase->id) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit font-medium-2 text-body"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                            </a>
+                            @endif
 
+                        </div>
+                    </td>
 
                 </tr>
             @endforeach

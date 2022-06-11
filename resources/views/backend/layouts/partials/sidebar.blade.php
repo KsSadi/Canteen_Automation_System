@@ -36,10 +36,10 @@
 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="Datatable">Sell Products</span></a>
                     <ul class="menu-content">
 
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.sales.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Manage Sales</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.sales.index') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">New Sales</span></a>
                         </li>
-                        @if (Auth::guard('admin')->user()->can('sale.create'))
-                            <li><a class="d-flex align-items-center" href="{{ route('dashboard.sales.create') }}"><i data-feather='edit'></i><span class="menu-item text-truncate" data-i18n="Basic">New Sale</span></a>
+                        @if (Auth::guard('admin')->user()->can('sale.production.view'))
+                            <li><a class="d-flex align-items-center" href="{{ route('dashboard.sales.production.index') }}"><i data-feather='edit'></i><span class="menu-item text-truncate" data-i18n="Basic">Production</span></a>
                             </li>
                         @endif
                     </ul>
@@ -173,18 +173,19 @@
             @if (Auth::guard('admin')->user()->can('stock.view'))
 
                 <div class="divider divider-info divider-start">
-                    <div class="divider-text">  Stock</div>
+                    <div class="divider-text">  Stock & Expenses</div>
                 </div>
 
                 <li class=" nav-item  @if (Request::is('dashboard/stock*'))
                     nav-item active
                 @endif"><a class="d-flex align-items-center" href="javascript:;"><i data-feather='bar-chart-2'></i><span class="menu-title text-truncate" data-i18n="Datatable">Stock</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.stock') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Current  Stock</span></a>
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.stock.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Current  Stock</span></a>
                         </li>
-
-                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.stock.out') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Stock Out</span></a>
+                        @if (Auth::guard('admin')->user()->can('stockout.create'))
+                        <li><a class="d-flex align-items-center " href="{{ route('dashboard.stock.out.create') }}"><i data-feather='edit'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Stock Out</span></a>
                         </li>
+                            @endif
 
                     </ul>
                 </li>
@@ -287,6 +288,8 @@
                     <a class="d-flex align-items-center" href="javascript:;"><i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Datatable">Report</span></a>
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="{{ route('dashboard.reports.sales.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">Selling Report</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{{ route('dashboard.reports.production.index') }}"><i data-feather='eye'></i><span class="menu-item text-truncate" data-i18n="Basic">Productions Report</span></a>
                         </li>
 
                         <li><a class="d-flex align-items-center " href="{{ route('dashboard.reports.purchase.index') }}"><i data-feather='eye'></i></i><span class="menu-item text-truncate" data-i18n="Advanced">Purchases Report</span></a>

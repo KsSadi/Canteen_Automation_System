@@ -1,5 +1,5 @@
 @section('page-title')
-   Purchase Category
+   Purchase Unit
 @endsection
 
 

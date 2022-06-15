@@ -41,7 +41,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('expense.view')) {
+        if (is_null($this->user) || !$this->user->can('expense.create')) {
             abort(403, 'Unauthorized Access!');
         }
 

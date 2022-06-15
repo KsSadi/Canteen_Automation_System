@@ -39,6 +39,12 @@
                     <input type="email" class="form-control" placeholder="username@gmail.com" name="email" value="{{ $admin->email }}">
                 </div>
                 </div>
+                <div class="mb-1 row">
+                    <label class="col-sm-2 col-form-label" style="font-size: medium">Phone</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control"name="phone" value="{{ $admin->phone }}" >
+                    </div>
+                </div>
 
                 <div class="mb-1 row">
                     <label class="col-sm-2 col-form-label" style="font-size: medium">Password</label>
@@ -48,7 +54,7 @@
                 </div>
 
                 <div class="mb-1 row">
-                    <label class="col-sm-2 col-form-label" style="font-size: medium">Password</label>
+                    <label class="col-sm-2 col-form-label" style="font-size: medium">Confirm Password</label>
                     <div class="col-sm-10">
                     <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
                 </div>

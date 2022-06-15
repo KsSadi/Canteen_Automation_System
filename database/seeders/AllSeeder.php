@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Employee;
 use App\Models\Expenses;
 use App\Models\pCategory;
@@ -12,6 +13,7 @@ use App\Models\SaleItem;
 use App\Models\SaleUnit;
 use App\Models\sCategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class AllSeeder extends Seeder
 {
@@ -337,6 +339,25 @@ class AllSeeder extends Seeder
             'salary_date' => '2022-06-02',
             'salary' => 3000.00,
         ]);
+
+       Admin::create([
+            'name' => 'Asif',
+            'email' => 'manager@demo.com',
+            'username' => 'asif',
+            'phone' => '01765885448',
+            'password' => Hash::make('manager123'),
+
+        ]);
+        Admin::create([
+            'name' => 'Shamim',
+            'email' => 'sales@demo.com',
+            'username' => 'Shamim',
+            'phone' => '01865889874',
+            'password' => Hash::make('sales123'),
+
+        ]);
+
+
 
 
 

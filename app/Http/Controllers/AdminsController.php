@@ -144,6 +144,7 @@ class AdminsController extends Controller
 
         $admin->name = $request->name;
         $admin->email = $request->email;
+        $admin->phone = $request->phone;
         $admin->username = $request->username;
         if (is_null($admin->password)) {
             $admin->password = Hash::make($request->password);
@@ -154,7 +155,7 @@ class AdminsController extends Controller
         if ($request->roles) {
             $admin->assignRole($request->roles);
         }
-        session()->flash('success', 'Admin has been Updated!');
+        session()->flash('success', 'User has been Updated!');
         return back();
     }
 
